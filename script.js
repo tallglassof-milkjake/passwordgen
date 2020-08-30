@@ -13,8 +13,6 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-//special characters for the function
-const specialCharacters = "!@#$%^&*()";
  
 //These are the prompts the use will be asked once they select generate password
 function generatePassword() {
@@ -44,18 +42,19 @@ function generatePassword() {
   //Generator functions
   var functionArray = {
     getNumbers: function() {
-      return String.fromCharCode(Math.floor(Math.random() * 10 + 48));
+      return String.fromCharCode(Math.floor(Math.random() * 10)+48);
     },
-
+    
     getLowerCase: function () {
-      return String.fromCharCode(Math.floor(Math.random() * 26 + 97));
+      return String.fromCharCode(Math.floor(Math.random() * 26)+97);
     },
 
     getUpperCase: function () {
-      return String.fromCharCode(Math.floor(Math.random() * 26 + 65));
+      return String.fromCharCode(Math.floor(Math.random() * 26)+65);
     },
 
     getSpecialCharacters: function () {
+      var specialCharacters = "!@#$%^&*()";
       return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
     }
 
@@ -92,19 +91,13 @@ function generatePassword() {
   var randomPasswordGenerated = "";
 
   //loop used to get random numbers
-  for (let i = 0; i < (parseInt(passwordLength) - minCount); i++) {
+  for (let i = 0; i < ((passwordLength) - minCount); i++) {
     var randomNumberPicked = Math.floor(Math.random() * 4);
 
     randomPasswordGenerated += randomNumberPicked;
 
   }
-
-  //make sure characters are added to password
-  randomPasswordGenerated += minNumbers;
-  randomPasswordGenerated += minLowerCase;
-  randomPasswordGenerated += minUpperCase;
-  randomPasswordGenerated += minSpecial;
-
+  
   return randomPasswordGenerated;
 
 }
