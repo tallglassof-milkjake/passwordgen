@@ -13,91 +13,68 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
- 
-//These are the prompts the use will be asked once they select generate password
+//Password character variables 
+var lowerChar = 'abcdefghijklmnopqrstuvwxyz';
+var lowerArray = lowerChar.split(''); //using .split to splice and return as an array
+var upperChar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var upperArray = upperChar.split(''); //using .split to splice and return as an array
+var numberChar = '0123456789';
+var numberArray = numberChar.split(''); //using .split to splice and return as an array
+var specialChar = '!@#$%^&*()?><}{~';
+var specialArray = specialChar.split(''); //using .split to splice and return as an array
+
+//Begin main function
 function generatePassword() {
-  var passwordLength = prompt("How many characters would you like the password to be? Must be between 8 and 128 characters.");
-  if (passwordLength >= 8 && passwordLength <= 128) {
-    var lowerCase = confirm("Do you want to include lowercase characters in the password?");
-    var upperCase = confirm("Do you want to include uppercase characters in the password?");
-    var numbers = confirm("Do you want to include numbers in the password?");
-    var special = confirm("Do you want to include special characters in the password?");
-  } else {
-    alert("Password must be between 8 and 128 characters.");
-    return;
-  }
 
+  //Setting empty variables to push selected criteria to and final password
+  var allCharacters = [];
+  var passwordResult = "";
+
+  //Setting password length
+  var passLength = prompt('How long should your password be?');
+  console.log(passLength);
+
+  //Setting password length parameters
+  if(passLength <8 || passLength>128) {
+    alert('Password must be between 8 and 128 characters');
+  } 
   
-  
+    else {
+      //confirming user criteria and if selected, add to the array allCharacters
+      if(confirm('Should the password use lowercase?')) {
+        //Array.prototype.push.apply is a method I read about on MDN documents I've used here to push all character arrays into the allCharacters array
+        //Array = to begin the array method
+        //.prototype = so far as I can tell is a way of preparing something to be pushed to the array but cannot find information on this individually (Code does not work without it)
+        //.push = pushes the element into the array and returns the new length of the array
+        //.apply = to call the function (I'm still not completely sure how it works but code wouldn't work without it) I'm still reading more information on this 
+        Array.prototype.push.apply(allCharacters, lowerArray);
+        console.log();
+      }
 
-  //minimum count for all characters
-  var minCount = 0;
+      if(confirm('Should the password use uppercase?')) {
+        Array.prototype.push.apply(allCharacters, upperArray);
+        console.log();
+      }
 
-  //non specified minimums for all characters individually
-  var minLowerCase = "" ;
-  var minUpperCase = "" ;
-  var minNumbers ="" ;
-  var minSpecial ="" ;
+      if(confirm('Should the password use numbers?')) {
+        Array.prototype.push.apply(allCharacters, numberArray);
+        console.log();
+      }
 
-  //Generator functions
-  var functionArray = {
-    getNumbers: function() {
-      return String.fromCharCode(Math.floor(Math.random() * 10)+48);
-    },
-    
-    getLowerCase: function () {
-      return String.fromCharCode(Math.floor(Math.random() * 26)+97);
-    },
+      if(confirm('Should the password use special characters?')) {
+        Array.prototype.push.apply(allCharacters, specialArray);
+        console.log();
+      } 
 
-    getUpperCase: function () {
-      return String.fromCharCode(Math.floor(Math.random() * 26)+65);
-    },
-
-    getSpecialCharacters: function () {
-      var specialCharacters = "!@#$%^&*()";
-      return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-    }
-
-  };
-
-
-  //checks for user selected criteria
-
-  if (numbers === true) {
-    minNumbers = functionArray.getNumbers();
-    minCount++;
-
-  }
-
-  if (lowerCase === true) {
-    minLowerCase = functionArray.getLowerCase();
-    minCount++;
-
-  }
-
-  if (upperCase === true) {
-    minUpperCase = functionArray.getUpperCase();
-    minCount++;
-
-  }
-
-  if (special === true) {
-    minSpecial = functionArray.getSpecialCharacters();
-    minCount++;
-
-  }
-
-  //empty string for the loop below
-  var randomPasswordGenerated = "";
-
-  //loop used to get random numbers
-  for (let i = 0; i < ((passwordLength) - minCount); i++) {
-    var randomNumberPicked = Math.floor(Math.random() * 4);
-
-    randomPasswordGenerated += randomNumberPicked;
-
-  }
-  
-  return randomPasswordGenerated;
-
+      //Logging all selected characters while testing prior to running the for loop (for my own benefit during coding)
+      console.log(allCharacters);
+          
+          //Loop to grab user criteria and randomly select characters for password, initially tried to use rando.js but had a little trouble implementing
+          for(var i=0; i < passLength; i++){
+            var random = Math.floor(Math.random() *allCharacters.length);
+            passwordResult += allCharacters[random];
+          }
+      }
+      //returning final random password to text area 
+      return document.getElementById('password').innerHTML = passwordResult;
 }

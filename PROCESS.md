@@ -1,27 +1,17 @@
 ### Password Generator Assignment ###
 
-* 30/08
-My first hurdle was finding where to begin. 
+This assignment was very difficult for me at first
 
-To start with I created a function of prompts to gather the users criteria. I'm not sure if the condition used is correct but it has the desired effect. (I will ask classmates, instructors and askBCS for direction if I cannot find a better way) 
-[for example](./screens/user-conditions.png)
+I started by attempting to build the individual pieces of the necessary code and then string them together. This didn't work so well as I feel I didn't have an understanding of the type of thinking necessary to do so.
 
-I started to write out the functions used to randomly generate password. I have tried to use and understand Math.floor and Math.random to get this. 
+After some frustration and a lot of reading I deleted and started over.
 
-As I understand; 
-* Math.random returns a random number between 0 and 1 (inclusive of 0 but exclusive of 1...) and; 
-* Math.floor is used to round a number down to it's closest integer;
-* String.fromCharCode is used to create a string to generate random numbers alphabets etc.
-Then I added the special characters in much the same way by creating its own string
-[example](./screens/random-functions.png)
+I watched multiple youtube videos on all things from javascript basics to random generators and started again using what I learned from those videos and the documentation on MDN. Again I had the trouble of it not working for me when it came to stringing everything together. After some more referencing I decided to start again. Again.
 
-### For some reason this generates mostly numbers and not many letters or special characters ###
-[example](./screens/not-so-random.png) [](./screens/not-so-random2.png) [](./screens/not-so-random3.png) [](./screens/not-so-random4.png)
+Third time round I got lucky. I read the right documents and watched the right video tutorials that seemed to give me the gist of it.
 
-Not sure how to fix this issue as yet
+The method Array.prototype.push.apply I don't fully understand but I managed to implement it to the right part of the code and it only works as a whole. I get the gist of what it is doing but I don't think I could explain it very well to someone else. I am working on using it in other code and in different ways to play with the outcomes as I learn best that way.
 
-Then I created some conditions relying on user selected criteria as booleans to determine the out come. 
-* (I believe the above issue might be realted to this section so I will break it again and log my findings here)
+I wanted to implement an alert to stop the function if the user doesn't select any criteria but I had no luck here either not being able to place the code in the right place or adjust the working code to include it without breaking.
 
-I then added a loop (I had to do alot of reading about this and still don't quite understand. I will look into it further to se what it is all about)
-
+Over all I feel I shouldn't have taken this long to complete this task (roughly 12 hours over 4 days) but considering my very limited experience with javascript I am excited that I managed to get it working in the end and am looking forward to playing with it and getting in as much experience as I can.
