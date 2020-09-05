@@ -53,7 +53,7 @@ function generatePassword() {
 
       if(confirm('Should the password use uppercase?')) {
         Array.prototype.push.apply(allCharacters, upperArray);
-        console.log();
+        console.log(upperArray.length);
       }
 
       if(confirm('Should the password use numbers?')) {
